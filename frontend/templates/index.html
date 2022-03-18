@@ -1,0 +1,72 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{% url 'home' %}">MyGP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Appointments
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'booking' %}">Book Appointment</a>
+              <a class="dropdown-item" href="{% url 'appointments' %}">View Appointments</a>
+            </div>
+          </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item active">
+            <a class="nav-link">Hello, {{user.profile_user.first_name}}</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+
+    </div>
+  </nav> 
+
+  <div class ="banner">
+    <div>
+      <h1>MyGP</h1>
+      <p>We are here to handle all of your medical needs</p>
+      <a href="{% url 'booking' %}"><button>Book Appointment</button></a>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="news">
+      <h2>Latest News</h2>
+      <a href="https://news.sky.com/story/covid-19-dozens-of-people-in-uk-have-had-coronavirus-four-times-and-thousands-have-been-infected-three-times-official-figures-show-12568682">Latest on Covid</a><br>
+      <a href="https://www.mylondon.news/news/local-news/">Local News</a>
+    </div>
+    <div class="team">
+      <h3>Our Team</h3>
+      <p>Our team are here to help you with all your medical needs. We currently have <b>{{count}}</b> registered doctors.
+      {% for doctor in doctors %}
+      <div class="profile-icon"></div>
+      <img src="/static/profile.png"><p>Dr. {{doctor.first_name}} {{doctor.last_name}}</p>
+      {% endfor %}
+      </p>
+    </div>
+    <div class="opening">
+      <h3>Opening Hours</h3>
+      <p><b>Monday-Friday</b></p>
+      <p>9:00-17:30</p>
+    </div>
+  </div>
+{% endblock content %}
