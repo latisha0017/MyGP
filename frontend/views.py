@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 
+
 class CustomLoginView(LoginView):
     template_name = 'login.html'
     fields = '__all__'

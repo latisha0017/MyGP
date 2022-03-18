@@ -10,3 +10,4 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('register/', views.Register, name='register'),
 ]
+
