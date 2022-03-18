@@ -1,3 +1,8 @@
 MyGP/__pycache__/
+<<<<<<< HEAD
 /api/__pycache__/
 /frontend/__pycache__/
+=======
+api/__pycache__/
+frontend/__pycache__/
+>>>>>>> frontend
