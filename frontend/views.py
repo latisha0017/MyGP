@@ -7,7 +7,7 @@ from django.views.generic.list import ListView
 from django import forms
 from django.forms import ModelForm
 from api.models import Account
-#from .forms import CustomUserCreationForm, AccountForm
+from .forms import CustomUserCreationForm, AccountForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login

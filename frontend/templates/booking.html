@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<script>	 
+    const patient = '{{user.id}}'; 
+    $( function() {
+        $( "#date" ).datepicker({
+            minDate: -0, 
+            maxDate: "+3M",
+            dateFormat: 'yy-mm-dd',
+            beforeShowDay: $.datepicker.noWeekends
+        }
+            );
+      } );</script>
+    <script type="text/javascript" src="{% static 'form.js' %}">
+    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{% url 'home' %}">MyGP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Appointments
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item active" href="{% url 'booking' %}">Book Appointment</a>
+              <a class="dropdown-item" href="{% url 'appointments' %}">View Appointments</a>
+            </div>
+          </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link">Hello, {{user.profile_user.first_name}}</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+    </ul>
+
+    </div>
+  </nav> 
+
+  <div class="my-3" id="form-wraper">
+    <h3> Book An Appointment </h3>
+    <p>If you are not able to select the timeslot you want with the selected date and time combination,
+      this doctor is not available at that time. If the timeslot is important to you, either select another date or doctor.</p>
+    <form method="POST" class="form" id="myForm">{% csrf_token %}
+        <label for="doctor">Doctor</label>
+        <select name="doctor" id="doctor">
+                <option>Choose a doctor</option>
+        </select>
+        <label for="datepicker">Date</label>
+        <input type="text" name="date" id="date">
+        <label for="timeslot">Timeslot</label>
+        <select name="timeslot" id="timeslot">
+            <option>Choose a time</option>
+        </select>
+        <label for="type">Appointment Type</label>
+        <select name="type" id="type">
+          <option>Face-To-Face</option>
+          <option>Phone Consultation</option>
+      </select>
+      <br>
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" cols="50" name="description" form="myForm"></textarea>
+        <input class="button" type="submit" value="Submit"  />
+    </form>
+</div>
+
+{% endblock content %}
