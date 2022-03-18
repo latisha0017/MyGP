@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
+    'frontend',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'MyGP.urls'
+ROOT_URLCONF = 'doctors.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'MyGP.wsgi.application'
+WSGI_APPLICATION = 'doctors.wsgi.application'
 
 
 # Database
